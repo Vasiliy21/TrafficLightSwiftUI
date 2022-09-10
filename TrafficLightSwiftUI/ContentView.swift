@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var buttonText = "Start"
+    @State private var currentLight = CurrentLight.green
+
     @State private var greenSircle = CircleView(color: .green, contrast: 0.5)
     @State private var yellowSircle = CircleView(color: .yellow, contrast: 0.5)
     @State private var redSircle = CircleView(color: .red, contrast: 0.5)
-    
-    @State private var currentLight = CurrentLight.green
-    
+
     var body: some View {
         ZStack {
             Color(.gray)
@@ -50,7 +50,7 @@ struct ContentView: View {
         if buttonText == "Start" {
             buttonText = "Next"
         }
-        
+
         switch currentLight {
         case .green:
             greenSircle = CircleView(color: .green, contrast: 1)
@@ -71,14 +71,15 @@ struct ContentView: View {
     }
 }
 
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
 extension ContentView {
     enum CurrentLight {
         case green, yellow, red
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
